@@ -1,0 +1,65 @@
+/* =========================================================================
+   AL-ABYAZ — RESPONSIVE OVERRIDES
+   Loaded after style.css. Mobile-first product/feature grids collapse here.
+   ========================================================================= */
+
+/* ---------- Tablets (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .feature-grid { grid-template-columns: repeat(2, 1fr); gap: 34px; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .about-split, .contact-grid, .pd-grid { gap: 40px; }
+}
+
+/* ---------- Small tablets / large phones (≤860px) ---------- */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-cta .btn-outline { display: none; }
+  .hamburger { display: flex; }
+
+  .about-split { grid-template-columns: 1fr; }
+  .about-media { max-width: 380px; margin: 0 auto; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+  .pd-grid { grid-template-columns: 1fr; }
+  .pd-media { max-width: 420px; margin: 0 auto; }
+}
+
+/* ---------- Phones (≤640px) ---------- */
+@media (max-width: 640px) {
+  .container { padding: 0 18px; }
+  .section { padding: 70px 0; }
+
+  .navbar .container { height: 72px; }
+  .brand-text { font-size: 1.1rem; }
+
+  .hero { min-height: 82vh; padding: 100px 18px 60px; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn { width: 100%; }
+
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .product-body { padding: 14px 14px 16px; gap: 6px; }
+  .product-body h3 { font-size: 1rem; }
+  .price-now { font-size: 1.2rem; }
+  .product-actions { flex-direction: column; }
+  .offer-badge { width: 50px; height: 50px; }
+  .offer-badge .pct { font-size: 0.6rem; }
+
+  .category-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .offer-strip { grid-template-columns: 1fr; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .filter-bar { flex-direction: column; align-items: stretch; }
+  .search-box { max-width: none; }
+
+  .pd-meta { flex-wrap: wrap; gap: 18px; }
+  .pd-actions .btn { min-width: 100%; }
+
+  .about-stats { gap: 24px; }
+
+  .wa-float { bottom: 18px; right: 18px; width: 52px; height: 52px; }
+}
