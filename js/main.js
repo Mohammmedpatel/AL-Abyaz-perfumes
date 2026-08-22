@@ -11,17 +11,16 @@ const SITE_CONFIG = {
 
   /* IMPORTANT: replace this with your real WhatsApp business number,
      in international format WITHOUT + or spaces (e.g. 919876543210). */
-  whatsappNumber: "919876543210", // TODO: replace with your real WhatsApp number
+  whatsappNumber: "917506516067", // TODO: replace with your real WhatsApp number
 
   /* Your UPI ID for customers who ask to pay directly (shown on Contact page). */
-  upiId: "alabyazperfumes@upi", // TODO: replace with your real UPI ID
-  upiPayeeName: "Al-Abyaz Perfumes & Attars",
+  upiId: "sobanbalwa0@okhdfcbank", // TODO: replace with your real UPI ID
+  upiPayeeName: "Soban",
 
-  address: "Jogeshwari, Mumbai, Maharashtra, India",
+  address: "Jogeshwari West, Mumbai, Maharashtra, India",
   email: "hello@alabyazperfumes.com", // TODO: replace with your real email
 
-  instagram: "https://www.instagram.com/al_abyaz_perfumes/",
-  facebook: "#",
+  instagram: "https://www.instagram.com/alabyazperfume1/",
 
   currency: "₹"
 };
