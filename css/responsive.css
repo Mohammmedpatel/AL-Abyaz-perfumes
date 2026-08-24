@@ -33,6 +33,7 @@
 
   .navbar .container { height: 72px; }
   .brand-text { font-size: 1.1rem; }
+  .mobile-menu { top: 72px; }
 
   .hero { min-height: 82vh; padding: 100px 18px 60px; }
   .hero-actions { flex-direction: column; width: 100%; }

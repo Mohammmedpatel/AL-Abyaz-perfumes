@@ -171,13 +171,18 @@ function initProductsPage() {
       list = list.filter((p) => p.categories.includes(activeCategory));
     }
     if (query.trim()) {
-      const q = query.trim().toLowerCase();
-      list = list.filter(
-        (p) =>
-          p.name.toLowerCase().includes(q) ||
-          p.description.toLowerCase().includes(q) ||
-          (p.notes && p.notes.toLowerCase().includes(q))
-      );
+      const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      list = list.filter((p) => {
+        const haystack = [
+          p.name,
+          p.description,
+          p.notes || "",
+          (p.categories || []).map((c) => CATEGORY_META[c]?.label || c).join(" ")
+        ]
+          .join(" ")
+          .toLowerCase();
+        return words.every((w) => haystack.includes(w));
+      });
     }
     renderProductGrid(grid, list);
   }
