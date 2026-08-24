@@ -27,3 +27,13 @@
   from = "/*"
   to = "/index.html"
   status = 404
+
+[[headers]]
+  for = "/js/offers.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/data/products.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
