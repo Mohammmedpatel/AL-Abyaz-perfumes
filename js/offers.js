@@ -24,15 +24,15 @@
    ========================================================================= */
 
 const OFFERS = [
-  // {
-  //   id: "offer-signature-oud",
-  //   productId: 1,
-  //   title: "Founders' Week Special",
-  //   startDate: "2026-08-18T00:00:00",
-  //   endDate: "2026-08-27T23:59:59",
-  //   originalPrice: 1499,
-  //   offerPrice: 1099
-  // },
+  {
+    id: "offer-signature-oud",
+    productId: 1,
+    title: "Founders' Week Special",
+    startDate: "2026-08-24T00:00:00",
+    endDate: "2026-08-26T23:59:59",
+    originalPrice: 1499,
+    offerPrice: 1099
+  },
   // {
   //   id: "offer-white-musk",
   //   productId: 2,
