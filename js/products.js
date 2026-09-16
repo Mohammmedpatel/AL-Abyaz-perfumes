@@ -149,23 +149,27 @@ function initHomeSections() {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Products page: search + category filter                                */
+/* Products page: search + category filter + pagination                   */
 /* ---------------------------------------------------------------------- */
+const PRODUCTS_PER_PAGE = 8;   // <-- change to 10, 12, etc. whenever you like
+
 function initProductsPage() {
   const grid = document.getElementById("products-grid");
   const chipRow = document.getElementById("category-chips");
   const searchInput = document.getElementById("product-search");
+  const pager = document.getElementById("pagination");
   if (!grid || !chipRow) return;
 
   const params = new URLSearchParams(window.location.search);
   let activeCategory = params.get("category") || "all";
   let query = "";
+  let currentPage = 1;
 
   chipRow.innerHTML = CATEGORIES.map(
     (c) => `<button class="chip${c.key === activeCategory ? " active" : ""}" data-cat="${c.key}">${c.label}</button>`
   ).join("");
 
-  function apply() {
+  function getFiltered() {
     let list = PRODUCTS.slice();
     if (activeCategory !== "all") {
       list = list.filter((p) => p.categories.includes(activeCategory));
@@ -184,7 +188,49 @@ function initProductsPage() {
         return words.every((w) => haystack.includes(w));
       });
     }
-    renderProductGrid(grid, list);
+    return list;
+  }
+
+  function renderPager(totalPages) {
+    if (!pager) return;
+    if (totalPages <= 1) {
+      pager.innerHTML = "";
+      return;
+    }
+    let html = `<button class="page-btn page-nav" data-page="${currentPage - 1}" ${
+      currentPage === 1 ? "disabled" : ""
+    }>‹ Prev</button>`;
+    for (let i = 1; i <= totalPages; i++) {
+      html += `<button class="page-btn${i === currentPage ? " active" : ""}" data-page="${i}">${i}</button>`;
+    }
+    html += `<button class="page-btn page-nav" data-page="${currentPage + 1}" ${
+      currentPage === totalPages ? "disabled" : ""
+    }>Next ›</button>`;
+    pager.innerHTML = html;
+
+    pager.querySelectorAll(".page-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const p = Number(btn.dataset.page);
+        if (p >= 1 && p <= totalPages && p !== currentPage) {
+          currentPage = p;
+          apply(false);
+          grid.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  }
+
+  function apply(resetPage = true) {
+    if (resetPage) currentPage = 1;
+    const list = getFiltered();
+    const totalPages = Math.ceil(list.length / PRODUCTS_PER_PAGE) || 1;
+    if (currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    const pageItems = list.slice(start, start + PRODUCTS_PER_PAGE);
+
+    renderProductGrid(grid, pageItems);
+    renderPager(totalPages);
   }
 
   chipRow.querySelectorAll(".chip").forEach((chip) => {
